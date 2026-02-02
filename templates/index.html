@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>daily-notice-broad</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 上方区域 */
+        .top {
+            background-color: #f2f2f2;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        /* 下方整体容器 */
+        .bottom {
+            flex: 1;
+            display: flex;
+        }
+
+        /* 下左区域 */
+        .bottom-left {
+            width: 50%;
+            background-color: #d9eaff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        /* 下右区域 */
+        .bottom-right {
+            width: 50%;
+            background-color: #ffe4d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top">weather</div>
+
+    <div class="bottom">
+        <div class="bottom-left">count down</div>
+        <div class="bottom-right">tomato timer</div>
+    </div>
+
+</body>
+</html>
