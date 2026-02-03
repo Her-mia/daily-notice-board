@@ -1,10 +1,11 @@
 from flask import Flask, render_template
+from weather import get_day_night_single_code
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    data={"weather":"weather",
+    data={"weather":get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
           "countdown":"coutdown",
           "timer":"tomato"
     }
