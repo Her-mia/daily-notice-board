@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  daily-notice-board:
+    image: python:3.13-slim
+    container_name: daily-notice-board
+    user: "1005:100"
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    volumes:
+      - /srv/dev-disk-by-uuid-bd5598f7-509d-40a7-b750-a664fec33b7f/docker_data/daily-notice-board/daily-notice-board:/app
+    
+    environment:
+      - PUID=1005
+      - PGID=100
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
+      - TZ=Asia/Shanghai
+    
+    command: >
+      sh -c "pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple && python app.py"
+
+    restart: unless-stopped
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
