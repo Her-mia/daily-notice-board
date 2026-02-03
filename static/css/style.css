@@ -1,0 +1,25 @@
+.top {
+    background-color: #f2f2f2;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* 让内容不贴边 */
+}
+
+.top-grid {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 列 */
+    grid-template-rows: repeat(2, auto);   /* 2 行 */
+    gap: 10px;
+}
+
+.top-grid .item {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 20px;
+}
