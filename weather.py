@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 from collections import Counter
+from weathermap import weather_map
 
 def get_day_night_single_code(lat,lon,timezone):
     url = "https://api.open-meteo.com/v1/forecast"
@@ -40,8 +41,8 @@ def get_day_night_single_code(lat,lon,timezone):
 
         weatherresults.append({
             "date": str(day),
-            "day_code": day_code,
-            "night_code": night_code
+            "day_weather": weather_map[day_code],
+            "night_weather": weather_map[night_code]
         })
 
     return weatherresults

@@ -45,19 +45,27 @@
 
 <div class="top">
     <div class="weather-grid">
-        <div>白天1</div>
-        <div>白天2</div>
-        <div>白天3</div>
-        <div>白天4</div>
-        <div>白天5</div>
-        <div>晚上1</div>
-        <div>晚上2</div>
-        <div>晚上3</div>
-        <div>晚上4</div>
-        <div>晚上5</div>
+        {# 第一行：白天天气 #}
+        {% for w in data.weather %}
+            <div class="weather-grid div">
+                <div>{{ w.date }}</div>
+                <div>{{ w.day_weather[0] }}</div>
+            </div>
+        {% endfor %}
+
+        {# 第二行：夜间天气 #}
+        {% for w in data.weather %}
+            <div class="weather-grid div">
+                <div>{{ w.date }}</div>
+                <div>{{ w.night_weather[0] }}</div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
+
+    </div>
+</div>
 
 
     <div class="bottom">
