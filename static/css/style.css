@@ -27,4 +27,36 @@
     align-items: center;
     padding: 10px;
 }
+/* 左下：倒计时 */
+.bottom-left {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: #b3e5fc;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: center;
+    white-space: pre-line;
+}
+
+/* “1天” 放大 */
+.big-text {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+/* 右下：番茄钟 */
+.bottom-right {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #ffcdd2;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 32px;
+    font-weight: bold;
+}
 
