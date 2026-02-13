@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from weather import get_day_night_single_code
+from countdown import countdown
 
 app = Flask(__name__)
 print(get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"))
@@ -7,7 +8,7 @@ print(get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"))
 @app.route('/')
 def home():
     data={"weather":get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
-          "countdown":"coutdown",
+          "countdown": countdown,
           "timer":"tomato"
     }
     return render_template("index.html", data=data)
