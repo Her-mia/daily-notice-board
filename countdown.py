@@ -1,3 +1,3 @@
 from datetime import datetime, timedelta
-countdown=datetime.now().date()-datetime(2026, 3, 1).date()
+countdown=day(datetime.now().date()-datetime(2026, 3, 1).date())
 print(countdown)
