@@ -27,36 +27,38 @@
     align-items: center;
     padding: 10px;
 }
-/* 左下：倒计时 */
+/* 下左区域 */
+/* 底部容器：贴底 + 横向 flex */
+.bottom-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;        /* ⭐ 关键：贴到底部 */
+    width: 100%;
+    height: 140px;    /* 你可以调整 */
+
+    display: flex;    /* ⭐ 关键：左右并排 */
+}
+
+
 .bottom-left {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    background-color: #b3e5fc;
-    padding: 20px 30px;
-    border-radius: 10px;
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1.6;
-    text-align: center;
-    white-space: pre-line;
+    flex: 1;
+    background-color: #d9eaff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
 }
 
-/* “1天” 放大 */
-.big-text {
-    font-size: 48px;
-    font-weight: bold;
-}
-
-/* 右下：番茄钟 */
 .bottom-right {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background-color: #ffcdd2;
-    padding: 20px 30px;
-    border-radius: 10px;
-    font-size: 32px;
-    font-weight: bold;
-}
+    flex: 1;
+    background-color: #ffe4d9;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+}
