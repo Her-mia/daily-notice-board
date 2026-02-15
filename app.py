@@ -4,7 +4,6 @@ from countdown import countdown
 
 
 app = Flask(__name__)
-print(get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"))
 
 @app.route('/')
 def home():

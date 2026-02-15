@@ -35,9 +35,9 @@
     bottom: 0;
 
     width: 100%;
-    height: 60vh;   /* ⭐ 关键：占屏幕 60% */
+    height: 60vh;   /* 关键：占屏幕 60% */
 
-    display: flex;  /* ⭐ 左右并排 */
+    display: flex;  /* 左右并排 */
 }
 
 
