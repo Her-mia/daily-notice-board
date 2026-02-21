@@ -79,11 +79,5 @@
     left: 0;
     width: 40px;
     height: auto;
-    animation: drive 25s linear forwards; /* ⭐ 动画：25秒跑到终点 */
-}
-
-/* 动画效果：汽车沿直线移动 */
-@keyframes drive {
-    from { left: 0; }
-    to { left: calc(100% - 40px); }
+    transition: transform 0.2s linear;
 }
