@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from weather import get_day_night_single_code
 from datecountdown import datecountdown
 from datetime import datetime, timedelta
-import timer  # 引入你的计时器模块
 
 
 app = Flask(__name__)

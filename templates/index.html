@@ -51,19 +51,24 @@
 
         <div class="bottom-right">
             <div class="timer">
-                
+
                 <h1>倒计时</h1>
-                <div id="timer"><h1>...<h1></div>
+                <div id="timer">
+                    <h1>...<h1>
+                </div>
                 <input type="number" id="minutes" min="1" max="180">
                 <button onclick="setCountdown()">开始倒计时</button>
 
                 <div id="msg" style="color:red;"></div>
-                <script src="{{ url_for('static', filename='timer.js') }}"></script>
+                
 
             </div>
             <div class="road">
                 <img src="{{ url_for('static', filename='img/car.png') }}" class="car">
             </div>
+            <script src="{{ url_for('static', filename='timer.js') }}"></script>
+
+
 
         </div>
 
