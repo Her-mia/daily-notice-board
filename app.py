@@ -2,7 +2,14 @@ from flask import Flask, render_template, request, jsonify, redirect
 from weather import get_day_night_single_code
 from datecountdown import calculate_days_left
 from datetime import datetime, timedelta
-
+import json
+import os
+filename = "timer.json"
+if os.path.exists(filename):
+    with open(filename, 'r', encoding='utf-8') as f:
+        timer = json.load(f)
+else:
+    timer = {}
 
 app = Flask(__name__)
 target_time = None
@@ -57,10 +64,17 @@ def set_countdown():
     target_time = datetime.now() + timedelta(minutes=minutes)
     return jsonify({"status": "ok", "target": target_time.isoformat()})
 
+for i in events:
+    timer[i["name"]] = i["days"]
 
+print(timer)
+
+with open(filename, 'w', encoding='utf-8') as f:
+    json.dump(timer, f, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
     # debug=True 允许你修改代码保存后，网页自动刷新
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
