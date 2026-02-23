@@ -63,7 +63,6 @@ function setCountdown() {
 }
 
 
-
 const car = document.querySelector(".car");
 const road = document.querySelector(".road");
 
