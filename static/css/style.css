@@ -39,23 +39,65 @@
 
 .bottom-left,
 .bottom-right {
-    flex: 1;              /* ⭐ 各占 50% */
-    min-height: 100%;     /* ⭐ 保证和容器一样高 */
+    flex: 1;              
+    min-height: 100%;    
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     font-size: 24px;
 }
 
-.bottom-left {
-    background-color: #d9eaff;
-}
 
 .bottom-right {
     background-color: #ffe4d9;
 }
 
+.bottom-left {
+    flex: 1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+    align-items: center;
+    background-color: #d9eaff;
+    padding-top: 20px;             
+}
+
+.add-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;      /* 如果你想让它横向铺满 */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    width: 100%;
+    padding: 20px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.event-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.event-days {
+    font-size: 18px;
+    color: #444;
+}
 
 
 .timer {

@@ -1,18 +1,43 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from weather import get_day_night_single_code
-from datecountdown import datecountdown
+from datecountdown import calculate_days_left
 from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
 target_time = None
 
-@app.route('/')
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
 def home():
-    data={"weather":get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
-          "date": datecountdown,
+
+    data = {
+        "weather": get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
+        "events": events
     }
+
     return render_template("index.html", data=data)
+
+events = []   # 每个元素是 {"name": ..., "days": ...}
+
+@app.route("/set_date", methods=["POST"])
+def set_date():
+    global events
+
+    name = request.form.get("event_name")
+    date_str = request.form.get("target_date")
+
+    days_left = calculate_days_left(date_str)
+
+    events.append({
+        "name": name,
+        "days": days_left
+    })
+
+    return redirect("/")
+
 
 @app.route("/get_time")
 def get_time():
