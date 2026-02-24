@@ -45,22 +45,24 @@
             <div class="add-date">
                 <form action="/set_date" method="POST">
                     <input type="text" name="event_name" placeholder="事件名称，例如：生日" required>
-                    <input type="date" name="target_date" required>
+                    <input type="date" name="target_date" placeholder="选择日期" required>
                     <button type="submit">设置目标日期</button>
                 </form>
             </div>
 
             {% if data.events %}
             <div class="events-grid">
-
-                {% for name, days in data.events.items() %}
+                {% for e in data.events %}
                 <div class="event-card">
-                    <div class="event-name">{{ name }}</div>
-                    <div class="event-days">还有 {{ days }} 天</div>
+                    <form action="/delete_event/{{ e.id }}" method="POST" class="delete-form">
+                        <button class="delete-btn">x</button>
+                    </form>
+                    <div class="event-name">{{ e.name }}</div>
+                    <div class="event-days">还有 {{ e.days }} 天</div>
                 </div>
                 {% endfor %}
-
             </div>
+
             {% else %}
             <p>还没有添加任何事件</p>
             {% endif %}
