@@ -49,22 +49,23 @@
                     <button type="submit">设置目标日期</button>
                 </form>
             </div>
+
             {% if data.events %}
             <div class="events-grid">
-                {% for e in data.events %}
+
+                {% for name, days in data.events.items() %}
                 <div class="event-card">
-                    <div class="event-name">{{ e.name }}</div>
-                    <div class="event-days">还有 {{ e.days }} 天</div>
+                    <div class="event-name">{{ name }}</div>
+                    <div class="event-days">还有 {{ days }} 天</div>
                 </div>
                 {% endfor %}
+
             </div>
             {% else %}
             <p>还没有添加任何事件</p>
             {% endif %}
-
-
-
         </div>
+
 
         <div class="bottom-right">
             <div class="timer">

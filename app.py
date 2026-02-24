@@ -4,12 +4,13 @@ from datecountdown import calculate_days_left
 from datetime import datetime, timedelta
 import json
 import os
+
 filename = "timer.json"
-if os.path.exists(filename):
-    with open(filename, 'r', encoding='utf-8') as f:
-        timer = json.load(f)
-else:
-    timer = {}
+if os.path.exists("timer.json"):
+    with open("timer.json", 'r', encoding='utf-8') as f:
+        result = json.load(f)
+
+events = []   # 每个元素是 {"name": ..., "days": ...}
 
 app = Flask(__name__)
 target_time = None
@@ -19,31 +20,47 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+    # 读取 JSON
+    try:
+        with open("timer.json", "r", encoding="utf-8") as f:
+            saved_events = json.load(f)
+    except:
+        saved_events = {}
+
+    # 动态计算剩余天数
+    events_with_days = {}
+    for name, date_str in saved_events.items():
+        days_left = calculate_days_left(date_str)
+        events_with_days[name] = days_left
 
     data = {
         "weather": get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
-        "events": events
+        "events": events_with_days
     }
 
     return render_template("index.html", data=data)
 
-events = []   # 每个元素是 {"name": ..., "days": ...}
-
 @app.route("/set_date", methods=["POST"])
 def set_date():
-    global events
-
     name = request.form.get("event_name")
     date_str = request.form.get("target_date")
 
-    days_left = calculate_days_left(date_str)
+    # 读取旧数据
+    try:
+        with open("timer.json", "r", encoding="utf-8") as f:
+            saved_events = json.load(f)
+    except:
+        saved_events = {}
 
-    events.append({
-        "name": name,
-        "days": days_left
-    })
+    # 写入新事件
+    saved_events[name] = date_str
+
+    # 保存
+    with open("timer.json", "w", encoding="utf-8") as f:
+        json.dump(saved_events, f, ensure_ascii=False, indent=4)
 
     return redirect("/")
+
 
 
 @app.route("/get_time")
@@ -64,17 +81,14 @@ def set_countdown():
     target_time = datetime.now() + timedelta(minutes=minutes)
     return jsonify({"status": "ok", "target": target_time.isoformat()})
 
-for i in events:
-    timer[i["name"]] = i["days"]
 
-print(timer)
 
-with open(filename, 'w', encoding='utf-8') as f:
-    json.dump(timer, f, ensure_ascii=False, indent=4)
+
 
 if __name__ == '__main__':
     # debug=True 允许你修改代码保存后，网页自动刷新
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
 
