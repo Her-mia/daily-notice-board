@@ -125,6 +125,24 @@
     color: #444;
 }
 
+input[type="date"] {
+    color: transparent;
+}
+
+input[type="date"]::before {
+    content: attr(placeholder);
+    color: #888;
+}
+
+input[type="date"]:focus,
+input[type="date"]:valid {
+    color: black;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+    content: "";
+}
 
 .timer {
     font-size: 32px;
