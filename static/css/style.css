@@ -1,3 +1,6 @@
+:root {
+    --theme-normal: linear-gradient(135deg, #42a5f5, #1e88e5); /* 默认蓝色 */
+}
 /* 上方区域 */
 .top {
     background-color: #f2f2f2;
@@ -85,16 +88,71 @@
     gap: 16px;
     width: 100%;
     padding: 20px;
+    margin-top: 20px; /* 想下移多少就改多少 */
 }
 
 .event-card {
+    width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
     position: relative;
-    background: white;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+.event-card {
+    width: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.delete-form {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+
+.event-top {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.event-top.normal {
+    background: var(--theme-normal);
+}
+
+.event-top.warning {
+    background: linear-gradient(135deg, #ffb74d, #fb8c00);
+}
+
+.event-top.danger {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+}
+
+
+/* 下半部分：固定灰色 */
+.event-bottom {
+    padding: 12px;
+    background-color: #f5f5f5;
+    color: #555;
+    font-size: 16px;
+    text-align: center;
+}
+
 
 .delete-form {
     position: absolute;

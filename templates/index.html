@@ -12,6 +12,17 @@
 
 <body>
 
+    <div class="theme-selector">
+        <label>主题颜色：</label>
+        <select id="themeSelect">
+            <option value="blue">蓝色</option>
+            <option value="pink">粉色</option>
+            <option value="green">绿色</option>
+            <option value="purple">紫色</option>
+            <option value="blackgold">黑金</option>
+        </select>
+    </div>
+
     <div class="top">
         <div class="weather-grid">
             {# 第一行：白天天气 #}
@@ -52,15 +63,30 @@
 
             {% if data.events %}
             <div class="events-grid">
-                {% for e in data.events %}
+                {% for name, days in data.events.items() %}
                 <div class="event-card">
-                    <form action="/delete_event/{{ e.id }}" method="POST" class="delete-form">
+
+                    <form action="/delete_event/{{ name }}" method="POST" class="delete-form"> 
+                        <button class="delete-btn">x</button> 
+                    </form>
+
+                    <form action="/delete_event/{{ name }}" method="POST" class="delete-form">
                         <button class="delete-btn">x</button>
                     </form>
-                    <div class="event-name">{{ e.name }}</div>
-                    <div class="event-days">还有 {{ e.days }} 天</div>
+
+                    <!-- 上半部分：事件名称（动态变色） -->
+                    <div class="event-top {% if days < 10 %}danger{% elif days < 30 %}warning{% else %}normal{% endif %}">
+                        {{ name }}
+                    </div>
+
+                    <!-- 下半部分：剩余天数（固定灰色） -->
+                    <div class="event-bottom">
+                        还有 {{ days }} 天
+                    </div>
+
                 </div>
                 {% endfor %}
+
             </div>
 
             {% else %}
@@ -98,6 +124,46 @@
 
 
     </div>
+    <script>
+    const themeSelect = document.getElementById("themeSelect");
+
+    // 页面加载时读取主题
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
+    }
+
+    // 切换主题
+    themeSelect.addEventListener("change", function() {
+    const theme = this.value;
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+});
+
+// 应用主题
+    function applyTheme(theme) {
+    switch(theme) {
+        case "blue":
+            document.documentElement.style.setProperty("--theme-normal", "linear-gradient(135deg, #020617, #0b1e3f)");
+            break;
+        case "pink":
+            document.documentElement.style.setProperty("--theme-normal", "linear-gradient(135deg, #f48fb1, #f06292)");
+            break;
+        case "green":
+            document.documentElement.style.setProperty("--theme-normal", "linear-gradient(135deg, #81c784, #66bb6a)");
+            break;
+        case "purple":
+            document.documentElement.style.setProperty("--theme-normal", "linear-gradient(135deg, #9575cd, #7e57c2)");
+            break;
+        case "blackgold":
+            document.documentElement.style.setProperty("--theme-normal", "linear-gradient(135deg, #2c2c2c, #000000)");
+            break;
+    }
+}
+    </script>
+
+
 
 </body>
 
