@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>daily-notice-broad</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -14,14 +13,13 @@
 
     <div class="theme-bar">
         <label>主题颜色：</label>
-        <select id="themeSelect">
-            <option value="blue">蓝色</option>
+        <select id="themeSelect" autocomplete="off">
+            <option value="blue" selected>蓝色</option>
             <option value="pink">粉色</option>
             <option value="green">绿色</option>
         </select>
     </div>
 
-<!-- 下面是你原来的内容 -->
 
 
     <div class="top">
@@ -67,8 +65,8 @@
                 {% for name, days in data.events.items() %}
                 <div class="event-card">
 
-                    <form action="/delete_event/{{ name }}" method="POST" class="delete-form"> 
-                        <button class="delete-btn">x</button> 
+                    <form action="/delete_event/{{ name }}" method="POST" class="delete-form">
+                        <button class="delete-btn">x</button>
                     </form>
 
                     <form action="/delete_event/{{ name }}" method="POST" class="delete-form">
@@ -76,7 +74,8 @@
                     </form>
 
                     <!-- 上半部分：事件名称（动态变色） -->
-                    <div class="event-top {% if days < 10 %}danger{% elif days < 30 %}warning{% else %}normal{% endif %}">
+                    <div
+                        class="event-top {% if days < 10 %}danger{% elif days < 30 %}warning{% else %}normal{% endif %}">
                         {{ name }}
                     </div>
 
@@ -113,75 +112,14 @@
             <div class="road">
                 <img src="{{ url_for('static', filename='img/car.png') }}" class="car">
             </div>
-            <script src="{{ url_for('static', filename='timer.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 
 
 
         </div>
 
     </div>
-
-    </div>
-
-
-    </div>
-    <script>
-    const themeSelect = document.getElementById("themeSelect");
-
-    // 页面加载时读取主题
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-        themeSelect.value = savedTheme;
-        applyTheme(savedTheme);
-    }
-
-    themeSelect.addEventListener("change", function() {
-        const theme = this.value;
-        localStorage.setItem("theme", theme);
-        applyTheme(theme);
-    });
-
-    function applyTheme(theme) {
-        switch(theme) {
-            case "blue":
-                document.documentElement.style.setProperty("--theme-bg", "#e0e7ff");
-                document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #0a1a3f, #0f2a6b)");
-                document.documentElement.style.setProperty("--theme-text", "#1e293b");
-                document.documentElement.style.setProperty("--theme-button-bg", "#1e40af");
-                document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-border", "#94a3b8");
-                break;
-
-            case "pink":
-                document.documentElement.style.setProperty("--theme-bg", "#ffe4ec");
-                document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #f48fb1, #f06292)");
-                document.documentElement.style.setProperty("--theme-text", "#4a4a4a");
-                document.documentElement.style.setProperty("--theme-button-bg", "#d81b60");
-                document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-border", "#f48fb1");
-                break;
-
-            case "green":
-                document.documentElement.style.setProperty("--theme-bg", "#e8f5e9");
-                document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #1b5e20, #2e7d32)");
-                document.documentElement.style.setProperty("--theme-text", "#2e2e2e");
-                document.documentElement.style.setProperty("--theme-button-bg", "#2e7d32");
-                document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
-                document.documentElement.style.setProperty("--theme-input-border", "#66bb6a");
-                break;
-        }
-    }
-
-    </script>
-
-
-
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 
 </body>
 

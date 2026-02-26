@@ -1,5 +1,7 @@
 :root {
-    --theme-bg: #f0f0f0;          /* 页面背景 */
+    --theme-topbg:#e0e0ff;          /* 页面背景 */
+    --theme-bottomleftbg: #e0f0ff;
+    --theme-bottomrightbg: #f0e0ff;
     --theme-card-bg: #ffffff;     /* 卡片背景 */
     --theme-card-top: #0a1a3f;    /* 卡片上半部分 */
     --theme-text: #333333;        /* 普通文字 */
@@ -32,7 +34,7 @@
 
 /* 上方区域 */
 .top {
-    background-color: #f2f2f2;
+    background-color: var(--theme-topbg);
     height: 40%;
     display: flex;
     justify-content: center;
@@ -86,7 +88,7 @@
 
 
 .bottom-right {
-    background-color: #ffe4d9;
+    background-color: var(--theme-bottomrightbg);
 }
 
 .bottom-left {
@@ -97,7 +99,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: #d9eaff;
+    background-color: var(--theme-bottomleftbg);
     padding-top: 20px;
 }
 
@@ -188,10 +190,6 @@ input {
     color: var(--theme-text);
 }
 
-body {
-    background: var(--theme-bg);
-    color: var(--theme-text);
-}
 
 /* 下半部分：固定灰色 */
 .event-bottom {
