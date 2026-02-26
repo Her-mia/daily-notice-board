@@ -1,6 +1,35 @@
 :root {
-    --theme-normal: linear-gradient(135deg, #42a5f5, #1e88e5); /* 默认蓝色 */
+    --theme-bg: #f0f0f0;          /* 页面背景 */
+    --theme-card-bg: #ffffff;     /* 卡片背景 */
+    --theme-card-top: #0a1a3f;    /* 卡片上半部分 */
+    --theme-text: #333333;        /* 普通文字 */
+    --theme-button-bg: #1e40af;   /* 按钮背景 */
+    --theme-button-text: #ffffff; /* 按钮文字 */
+    --theme-input-bg: #ffffff;    /* 输入框背景 */
+    --theme-input-border: #cccccc;/* 输入框边框 */
 }
+
+
+.theme-bar {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.7);
+    padding: 8px 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+.theme-bar select {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
 /* 上方区域 */
 .top {
     background-color: #f2f2f2;
@@ -108,6 +137,11 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
+.event-card {
+    background: var(--theme-card-bg);
+}
+
+
 .delete-form {
     position: absolute;
     top: 5px;
@@ -132,7 +166,7 @@
 }
 
 .event-top.normal {
-    background: var(--theme-normal);
+    background: var(--theme-card-top);
 }
 
 .event-top.warning {
@@ -143,6 +177,21 @@
     background: linear-gradient(135deg, #ef5350, #e53935);
 }
 
+button {
+    background: var(--theme-button-bg);
+    color: var(--theme-button-text);
+}
+
+input {
+    background: var(--theme-input-bg);
+    border: 1px solid var(--theme-input-border);
+    color: var(--theme-text);
+}
+
+body {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+}
 
 /* 下半部分：固定灰色 */
 .event-bottom {
