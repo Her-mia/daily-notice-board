@@ -23,6 +23,16 @@
 
 
     <div class="top">
+        <form method="POST" action="/">
+            <label>选择城市：</label>
+            <select name="location" onchange="this.form.submit()">
+                {% for city_id, info in data.all_locations.items() %}
+                <option value="{{ city_id }}" {% if data.current_loc==city_id %}selected{% endif %}>
+                    {{ info.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
         <div class="weather-grid">
             {# 第一行：白天天气 #}
             {% for w in data.weather %}

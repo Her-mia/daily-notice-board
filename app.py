@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, redirect
-from weather import get_day_night_single_code
+from weather import get_day_night_single_code, LOCATIONS
 from datecountdown import calculate_days_left
 from datetime import datetime, timedelta
 import json
@@ -21,28 +21,36 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    # 读取 timer.json
+    selected_city = request.form.get("location", "wuhan")
+    city_conf = LOCATIONS.get(selected_city, LOCATIONS["wuhan"])
+    
+    # 直接传参，不涉及数组/元组转换
+    weather_info = get_day_night_single_code(
+        city_conf["lat"], 
+        city_conf["lon"], 
+        city_conf["tz"]
+    )
+
     try:
         with open("timer.json", "r", encoding="utf-8") as f:
             saved_events = json.load(f)
     except:
         saved_events = {}
 
-    # 在这里动态计算剩余天数
-    events_with_days = {}
-    for name, date_str in saved_events.items():
-        days_left = calculate_days_left(date_str)
-        events_with_days[name] = days_left
+    events_with_days = {name: calculate_days_left(date_str) for name, date_str in saved_events.items()}
 
-    # 传给模板
+    # 4. 传给模板
     data = {
-        "weather": get_day_night_single_code(30.58333, 114.26667, "Asia/Shanghai"),
-        "events": events_with_days
+        # 使用动态获取的 lat, lon, tz
+        "weather": weather_info,
+        "events": events_with_days,
+        "current_loc": selected_city,
+        "all_locations": LOCATIONS 
     }
 
     print("传给模板的 events =", events_with_days, type(events_with_days))
 
-    return render_template("index.html", data=data)
+    return render_template("index.html", data=data, current_loc=selected_city)
 
 
 events = []   # 每个元素是 {"name": ..., "days": ...}
