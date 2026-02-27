@@ -9,8 +9,29 @@
     --theme-button-text: #ffffff; /* 按钮文字 */
     --theme-input-bg: #ffffff;    /* 输入框背景 */
     --theme-input-border: #cccccc;/* 输入框边框 */
+    --theme-card-bg: #ffffff;
+    --theme-card-top:linear-gradient(135deg, #4f7df0, #6b9bff); /* 浅蓝渐变 */
+    --theme-text: #ffffff;
 }
 
+.city-bar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.7);
+    padding: 8px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+.city-bar select {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
 
 .theme-bar {
     position: fixed;
@@ -56,12 +77,14 @@
 
 /* 每个格子的样式 */
 .weather-grid div {
-    background-color: white;
     border: 1px solid #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: var(--theme-card-top);
+    border-radius: 12px;
     padding: 10px;
+    color: var(--theme-text);
 }
 
 /* 下左区域 */

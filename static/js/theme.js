@@ -26,6 +26,10 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-border", "#94a3b8");
+            document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #4f7df0, #6b9bff)");
+            document.documentElement.style.setProperty("--theme-text", "#ffffff");
+
+
             break;
 
         case "pink":
@@ -39,6 +43,8 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-border", "#f48fb1");
+            document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
+            document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #f48fb1, #f06292)");
             break;
 
         case "green":
@@ -52,6 +58,8 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-button-text", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-bg", "#ffffff");
             document.documentElement.style.setProperty("--theme-input-border", "#66bb6a");
+            document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
+            document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #31df3d, #18d421)");
             break;
     }
 }
