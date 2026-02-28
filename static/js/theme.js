@@ -14,6 +14,7 @@ themeSelect.addEventListener("change", function() {
 });
 
 function applyTheme(theme) {
+    const img = document.getElementById("themeImage");
     switch(theme) {
         case "blue":
             document.documentElement.style.setProperty("--theme-topbg", "#e0e0ff");
@@ -28,8 +29,7 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-input-border", "#94a3b8");
             document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #4f7df0, #6b9bff)");
             document.documentElement.style.setProperty("--theme-text", "#ffffff");
-
-
+            img.src = "/static/img/blue car.png";
             break;
 
         case "pink":
@@ -45,6 +45,7 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-input-border", "#f48fb1");
             document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
             document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #f48fb1, #f06292)");
+            img.src = "/static/img/pink car.png";
             break;
 
         case "green":
@@ -60,6 +61,7 @@ function applyTheme(theme) {
             document.documentElement.style.setProperty("--theme-input-border", "#66bb6a");
             document.documentElement.style.setProperty("--theme-card-bg", "#ffffff");
             document.documentElement.style.setProperty("--theme-card-top", "linear-gradient(135deg, #31df3d, #18d421)");
+            img.src = "/static/img/green car.png";
             break;
     }
 }

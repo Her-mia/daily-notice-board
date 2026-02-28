@@ -253,6 +253,11 @@ input {
     color: #444;
 }
 
+.bottom-right {
+    position: relative; /* 关键：让图片以这个区域为定位基准 */
+}
+
+
 input[type="date"] {
     color: transparent;
 }
