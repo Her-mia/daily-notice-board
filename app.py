@@ -24,7 +24,6 @@ def home():
     selected_city = request.form.get("location", "wuhan")
     city_conf = LOCATIONS.get(selected_city, LOCATIONS["wuhan"])
     
-    # 直接传参，不涉及数组/元组转换
     weather_info = get_day_night_single_code(
         city_conf["lat"], 
         city_conf["lon"], 
@@ -37,21 +36,26 @@ def home():
     except:
         saved_events = {}
 
+    # 计算剩余天数（字典）
     events_with_days = {name: calculate_days_left(date_str) for name, date_str in saved_events.items()}
 
-    # 4. 传给模板
+    # 在这里排序
+    # 字典 → 列表 → 排序 → 再放回 data
+    sorted_events = sorted(
+        events_with_days.items(),
+        key=lambda x: x[1]   # x[1] 是 days_left
+    )
+
     data = {
-        # 使用动态获取的 lat, lon, tz
         "weather": weather_info,
-        "events": events_with_days,
+        "events": sorted_events, 
         "current_loc": selected_city,
         "all_locations": LOCATIONS 
     }
 
-    print("传给模板的 events =", events_with_days, type(events_with_days))
+    print("传给模板的 events =", sorted_events)
 
     return render_template("index.html", data=data, current_loc=selected_city)
-
 
 events = []   # 每个元素是 {"name": ..., "days": ...}
 
